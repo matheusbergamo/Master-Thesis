@@ -1,0 +1,214 @@
+# flair project file
+Version: 300
+Mode: fluka
+md5: 10ffe0e1b9326dcd7b099b4819a0b89c
+Input:
+TITLE
+*Set the defaults for precision simulations
+DEFAULTS DAMAGE
+*Define the beam characteristics
+BEAM NEUTRON -100000.0,, 10000.0
+*Define the beam position
+BEAMPOS CART-VOL =t+L/2 =t+L/2+eps =t+L/2 =t+L/2+eps =t+L/2 =t+L/2+eps
+SOURCE sp_full.dat 2.0
+GEOBEGIN COMBNAME
+*Black body
+SPH blkbody 0.0 0.0 0.0 100000.0
+*Void sphere
+SPH void 0.0 0.0 0.0 10000.0
+#define eps 0
+#define t 0
+#define L 1
+#define N_bins 250
+*Cylindrical target
+RPP target =-L/2 =L/2 =-L/2 =L/2 =-L/2 =L/2
+*Cylindrical target
+RPP shield =-t+(-L/2) =t+L/2 =-t+(-L/2) =t+L/2 =-t+(-L/2) =t+L/2
+!XYP z1 0.3
+END
+*Black hole
+REGION BLKBODY 5
+	+blkbody -void
+*Void around
+REGION VOID 5
+	+void -target
+*Target
+REGION TARGET1 5
+	+target
+*Target
+REGION SHIELD 5
+	+shield -target
+END
+GEOEND
+COMPOUND QUARTZ 1.0 SILICON 2.0 OXYGEN
+MATERIAL QUARTZ,,, 2.65
+MAT-PROP DPA-ENER 100,,, QUARTZ
+*..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+ASSIGNMA , BLCKHOLE BLKBODY
+ASSIGNMA , VACUUM VOID
+ASSIGNMA , QUARTZ TARGET1
+ASSIGNMA , POLYETHY SHIELD
+USRBDX Neut_Out 99 NEUTRON -30 TARGET1 SHIELD,, 100 1E-12 220
+USRBDX Neut_Out2 99 NEUTRON -29 SHIELD VOID,, 100 1E-12 220
+USRBIN n_fluence 10 NEUTRON -31 =+L/2 =+L/2 =+L/2 =-L/2 =-L/2 =-L/2 $N_bins $N_bins \
+	 $N_bins
+USRBIN dpa 10 DPA-SCO -32 =+L/2 =+L/2 =+L/2 =-L/2 =-L/2 =-L/2 $N_bins $N_bins $N_bins
+USRBIN dpa1 12 DPA-SCO -24 @LASTREG =+L/2 =+L/2 TARGET1 =-L/2 =-L/2,, $N_bins $N_bins
+USRBIN p_fluence 10 PROTON -25 =+L/2 =+L/2 =+L/2 =-L/2 =-L/2 =-L/2 $N_bins $N_bins \
+	 $N_bins
+USRBIN g_fluence 10 PHOTON -26 =+L/2 =+L/2 =+L/2 =-L/2 =-L/2 =-L/2 $N_bins $N_bins \
+	 $N_bins
+*Set the random number seed
+RANDOMIZ , 1.0
+*Set the number of primary histories to be simulated in the run
+START , 100000
+STOP
+EndInput
+
+Notes:
+	|{img:sim_23_plot01.png}
+Page: Input
+plotengine: Gnuplot
+
+# Run information
+Run: <default>
+	Exe:      /home/mbergamo/Área de Trabalho/Setembro/Sim7/flukahp-spec
+	Status:   4
+	StartRun: 1675954142
+End
+
+# Plots information
+Plot: sim_geometry
+	Type: Geometry
+	basisu: 0 0 1
+	basisv: 1 0 0
+	extends: 4.50732 2.61091
+	grid: 0
+	origin: -0.187127 0 0.293858
+	title: Geometry
+End
+Plot: sim_24_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: sim_24.bnn
+	grid: 0
+	hist: 1D Projection
+	proj: X
+	title: USRBIN sim 24
+End
+Plot: sim_25_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: sim_25.bnn
+	grid: 0
+	hist: 2D Projection
+	int: 1.9414356914566091E-004
+	max: 2.39744708E-02
+	min: 7.26734442E-08
+	title: USRBIN sim 25
+End
+Plot: sim_26_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: sim_26.bnn
+	grid: 0
+	hist: 2D Projection
+	int: 6.9753107681385827E-004
+	max: 1.66679528E-02
+	min: 2.16203908E-08
+	title: USRBIN sim 26
+End
+Plot: sim_30_plot
+	Type: USR-1D
+	file.0: sim_30_tab.lis
+	grid: 0
+	lc.0: red
+	lw.0: 2
+	name.0: Detector 1
+	ndetectors: 1
+	title: USR-1D sim 30
+	x.0: 2
+	xlog: 1
+	y.0: 1
+End
+Plot: sim_31_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: sim_31.bnn
+	grid: 0
+	hist: 2D Projection
+	int: 0.29950964821212639
+	max: 0.704267919
+	min: 0.202490374
+	title: USRBIN sim 31
+End
+Plot: sim_31_plot01
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: sim_31.bnn
+	grid: 0
+	hist: 1D Projection
+	int: 0.29950964821212939
+	max: 0.598708808
+	min: 0.274145663
+	title: USRBIN sim 31
+End
+Plot: sim_32_plot
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: sim_32.bnn
+	grid: 0
+	hist: 2D Projection
+	int: 1.4026713330870507E-022
+	max: 4.57908002E-21
+	min: 4.08579793E-30
+	title: USRBIN sim 32
+End
+Plot: sim_32_plot01
+	Type: USRBIN
+	cblog: 1
+	cbtics: 1
+	datafile: sim_32.bnn
+	grid: 0
+	hist: 1D Projection
+	int: 1.4026713330870481E-022
+	max: 3.11371250E-22
+	min: 6.82821339E-23
+	title: USRBIN sim 32
+End
+Plot: Red
+	Type: Geometry
+	basisu: 0 0 1
+	basisv: 1 0 0
+	coord: Z-X
+	extends: 1.81139 1.04926
+	layer: Media
+	origin: -0.0669594 0 -0.0641598
+End
+Plot: Green
+	Type: Geometry
+	basisu: 0.836516 0.0173377 0.547668
+	basisv: 0.224144 0.901221 -0.370891
+	extends: 172.8 100.096
+	layer: 3D
+End
+Plot: Blue
+	Type: Geometry
+	basisu: 0 0 1
+	coord: Z-Y
+	extends: 120 69.3333
+	layer: Media
+	origin: 0 9.6 3.34222
+End
+Plot: Magenta
+	Type: Geometry
+	coord: X-Y
+	extends: 83.2294 48.0881
+	layer: Media
+End

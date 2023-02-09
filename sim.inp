@@ -1,0 +1,110 @@
+TITLE
+
+* Set the defaults for precision simulations
+DEFAULTS                                                              DAMAGE
+* Define the beam characteristics
+BEAM       -100000.0             10000.0                              NEUTRON
+* Define the beam position
+!@what.1=t+L/2
+!@what.2=t+L/2+eps
+!@what.3=t+L/2
+!@what.4=t+L/2+eps
+!@what.5=t+L/2
+!@what.6=t+L/2+eps
+BEAMPOS          0.5       0.5       0.5       0.5       0.5       0.5CART-VOL
+SOURCE           2.0                                                  sful.dat
+GEOBEGIN                                                              COMBNAME
+    0    0          
+* Black body
+SPH blkbody    0.0 0.0 0.0 100000.0
+* Void sphere
+SPH void       0.0 0.0 0.0 10000.0
+#define eps 0
+#define t 0
+#define L 1
+#define N_bins 250
+* Cylindrical target
+!@what.1=-L/2
+!@what.2=L/2
+!@what.3=-L/2
+!@what.4=L/2
+!@what.5=-L/2
+!@what.6=L/2
+RPP target     -0.5 0.5 -0.5 0.5 -0.5 0.5
+* Cylindrical target
+!@what.1=-t+(-L/2)
+!@what.2=t+L/2
+!@what.3=-t+(-L/2)
+!@what.4=t+L/2
+!@what.5=-t+(-L/2)
+!@what.6=t+L/2
+RPP shield     -0.5 0.5 -0.5 0.5 -0.5 0.5
+#if 0
+XYP z1         0.3
+#endif
+END
+* Black hole
+BLKBODY      5 +blkbody -void
+* Void around
+VOID         5 +void -target
+* Target
+TARGET1      5 +target
+* Target
+SHIELD       5 +shield -target
+END
+GEOEND
+COMPOUND         1.0   SILICON       2.0    OXYGEN                    QUARTZ
+MATERIAL                            2.65                              QUARTZ
+MAT-PROP          30                        QUARTZ                    DPA-ENER
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+ASSIGNMA    BLCKHOLE   BLKBODY
+ASSIGNMA      VACUUM      VOID
+ASSIGNMA      QUARTZ   TARGET1
+ASSIGNMA    POLYETHY    SHIELD
+USRBDX            99   NEUTRON       -30   TARGET1    SHIELD          Neut_Out
+USRBDX           100     1E-12       220                               &
+USRBDX            99   NEUTRON       -29    SHIELD      VOID          Neut_Out2
+USRBDX           100     1E-12       220                               &
+!@what.4=+L/2
+!@what.5=+L/2
+!@what.6=+L/2
+!@what.7=-L/2
+!@what.8=-L/2
+!@what.9=-L/2
+USRBIN            10   NEUTRON       -31       0.5       0.5       0.5n_fluence
+USRBIN          -0.5      -0.5      -0.5   $N_bins   $N_bins   $N_bins &
+!@what.4=+L/2
+!@what.5=+L/2
+!@what.6=+L/2
+!@what.7=-L/2
+!@what.8=-L/2
+!@what.9=-L/2
+USRBIN            10   DPA-SCO       -32       0.5       0.5       0.5dpa
+USRBIN          -0.5      -0.5      -0.5   $N_bins   $N_bins   $N_bins &
+!@what.5=+L/2
+!@what.6=+L/2
+!@what.8=-L/2
+!@what.9=-L/2
+USRBIN            12   DPA-SCO       -24  @LASTREG       0.5       0.5dpa1
+USRBIN       TARGET1      -0.5      -0.5             $N_bins   $N_bins &
+!@what.4=+L/2
+!@what.5=+L/2
+!@what.6=+L/2
+!@what.7=-L/2
+!@what.8=-L/2
+!@what.9=-L/2
+USRBIN            10    PROTON       -25       0.5       0.5       0.5p_fluence
+USRBIN          -0.5      -0.5      -0.5   $N_bins   $N_bins   $N_bins &
+!@what.4=+L/2
+!@what.5=+L/2
+!@what.6=+L/2
+!@what.7=-L/2
+!@what.8=-L/2
+!@what.9=-L/2
+USRBIN            10    PHOTON       -26       0.5       0.5       0.5g_fluence
+USRBIN          -0.5      -0.5      -0.5   $N_bins   $N_bins   $N_bins &
+* Set the random number seed
+RANDOMIZ         1.0
+* Set the number of primary histories to be simulated in the run
+START         100000
+STOP

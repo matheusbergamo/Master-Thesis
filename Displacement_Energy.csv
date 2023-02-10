@@ -11,7 +11,7 @@
 # Thermal Neutrons (from 10⁻⁸ to 10⁻⁶ MeV)
 # E_th, DPA,          relative uncertainty
 # eV,   prim⁻¹,       adimensional
-  5,    2.82193e-25,	0.786323
+  5,    1.22072e-24,	0.00935042
   30,   2.00364e-25,	0.0124876
   50,   1.19955e-25,	0.0122758
   100,  5.98534e-26,	0.0120511

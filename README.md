@@ -1,0 +1,6 @@
+# Master-Thesis
+Codes for calculations and data analysis used in my project
+
+I'm currenting researching how the neutron background radiation effects the search for the Coherent Elastic Neutrino-Nucleus Scattering (CEvNS) using reactor antineutrinos. The aim of this project is to design an experiment to study the feasibility of paleo-detectors to detect rare particles events (https://doi.org/10.1103/PhysRevD.101.103017). For the search of such events, a comprehension of the background radiation is a must. Because elastic neutron scattering produce the same experimental observables - i.e. radiation damage in the form of atomic displacements and tracks - as CevNS the natural neutron radiation due to extensive cosmic rays showers is the main concern.
+
+I'm using the multi-purpose Monte Carlo software FLUKA in conjunction with it's graphical interface FLAIR (https://fluka.cern). Most of the calculations are of the displacements per atom (DPA) induced by a neutron radiation field impinging on a quartz (SiO2) sample as a paleo-detector prototype. The energy distribution of the neutrons are determined analytically by the Sato model to predict cosmic ray neutron spectra in the atmosphere (https://doi.org/10.1667/RR0610.1)

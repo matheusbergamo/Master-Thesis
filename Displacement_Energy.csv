@@ -1,5 +1,7 @@
 # Data on the influence of the displacement energy threshold (E_th) on the final damage calculation.
-# An estimation of the displacement energy is made with the formula cited in the work Passive Low-Energy Nuclear-Recoil Detection with Color Centers by  Cogswell et al. (http://dx.doi.org/10.1103/PhysRevApplied.16.064060). The displacement energy E_th is a function of the melting temperature T_m. The units for E_th and T_m are eV and K, respectively.
+# An estimation of the displacement energy is made with the formula cited in the work Passive Low-Energy Nuclear-Recoil Detection with Color Centers 
+# by  Cogswell et al. (http://dx.doi.org/10.1103/PhysRevApplied.16.064060). 
+# The displacement energy E_th is a function of the melting temperature T_m. The units for E_th and T_m are eV and K, respectively.
 #
 # E_th(T_m) = 0.018*T_m + 7.2
 #

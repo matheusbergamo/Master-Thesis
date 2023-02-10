@@ -1,0 +1,46 @@
+# Data on the influence of the displacement energy threshold (E_th) on the final damage calculation.
+# An estimation of the displacement energy is made with the formula cited in the work Passive Low-Energy Nuclear-Recoil Detection with Color Centers by  Cogswell et al. (http://dx.doi.org/10.1103/PhysRevApplied.16.064060). The displacement energy E_th is a function of the melting temperature T_m. The units for E_th and T_m are eV and K, respectively.
+#
+# E_th(T_m) = 0.018*T_m + 7.2
+#
+# The melting point of quartz is T_m = (1650 ± 75)°C acording to https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/q/Quartz.htm. This results in a displacement energy of  E_th = (41.8 ± 1.3)eV => 40.5 eV < E_th < 43.1 eV with 68% of probability in this model.   
+
+# Thermal Neutrons (from 10⁻⁸ to 10⁻⁶ MeV)
+# E_th, DPA,          relative uncertainty
+# eV,   prim⁻¹,       adimensional
+  5,    2.82193e-25,	0.786323
+  30,   2.00364e-25,	0.0124876
+  50,   1.19955e-25,	0.0122758
+  100,  5.98534e-26,	0.0120511
+
+# Epithermal Neutrons (from 10⁻⁶ to 10⁻¹ MeV)
+# E_th, DPA,          relative uncertainty
+# eV,   prim⁻¹,       adimensional
+  5,    1.20832e-22,	0.00800107
+  30,   2.01386e-23,	0.00800105
+  50,   1.20832e-23,	0.00800106
+  100,  6.04158e-24,	0.00800105
+  
+# Evaporation Neutrons (from 10⁻¹ to 10⁺¹ MeV)
+# E_th, DPA,          relative uncertainty
+# eV,   prim⁻¹,       adimensional
+  5,    1.82955e-21,	0.00789105
+  30,   2.73272e-22,	0.00792755
+  50,   1.55785e-22,	0.00780025
+  100,  7.23707e-23,	0.00789922 
+  
+# Spallation Neutrons (from 10⁺¹ to 10⁺⁴ MeV)
+# E_th, DPA,          relative uncertainty
+# eV,   prim⁻¹,       adimensional
+  5,    3.72488e-21,	0.00410222
+  30,   6.21031e-22,	0.00382085
+  50,   3.72487e-22,	0.00410202
+  100,  1.86244e-22,	0.00410197
+  
+# Full Spectrum (from 10⁻⁶ to 10⁺⁴ MeV)
+# E_th, DPA,          relative uncertainty
+# eV,   prim⁻¹,       adimensional
+  5,    1.62968e-21,	0.00698627
+  30,   2.60499e-22,	0.00699652
+  50,   1.53421e-22,	0.00697536
+  100,  7.47637e-23,	0.00692520

@@ -5,7 +5,8 @@
 #
 # E_th(T_m) = 0.018*T_m + 7.2
 #
-# The melting point of quartz is T_m = (1650 ± 75)°C acording to https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/q/Quartz.htm. This results in a displacement energy of  E_th = (41.8 ± 1.3)eV => 40.5 eV < E_th < 43.1 eV with 68% of probability in this model.   
+# The melting point of quartz is T_m = (1650 ± 75)°C acording to https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/q/Quartz.htm. 
+# This results in a displacement energy of  E_th = (41.8 ± 1.3)eV => 40.5 eV < E_th < 43.1 eV with 68% of probability in this model.   
 
 # Thermal Neutrons (from 10⁻⁸ to 10⁻⁶ MeV)
 # E_th, DPA,          relative uncertainty
